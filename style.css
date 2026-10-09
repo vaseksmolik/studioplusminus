@@ -1,0 +1,195 @@
+:root {
+  --ink: #000;
+  --paper: #fff;
+  --muted: #5f666d;
+  --accent: #ffe6c2;
+  --gutter: 24px;
+  --sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+img { display: block; max-width: 100%; height: auto; }
+
+a { color: inherit; }
+
+/* Záhlaví leží přes úvodní obrázek */
+.top {
+  position: absolute;
+  inset: 0 0 auto 0;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 46px var(--gutter) 0;
+}
+
+.logo { display: inline-flex; color: var(--ink); }
+.logo:focus-visible, .social-icon:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
+
+.social-icon { display: inline-flex; color: var(--ink); }
+.social-icon:hover { color: var(--muted); }
+
+/* Úvodní obrázek */
+.hero {
+  position: relative;
+  height: min(75vw, 92vh);
+  min-height: 420px;
+  overflow: hidden;
+}
+
+.hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: left top;
+}
+
+.down {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.down svg { transition: transform .25s ease; }
+.down:hover svg { transform: translateY(3px); }
+
+/* O studiu */
+.about {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: 40px;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 90px var(--gutter) 140px;
+}
+
+.about h1 {
+  margin: 0;
+  font-size: clamp(30px, 3.4vw, 44px);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -.01em;
+}
+
+.about .text p {
+  margin: 0 0 1.35em;
+  font-size: 18px;
+  line-height: 1.75;
+  max-width: 62ch;
+}
+
+/* Galerie */
+.gallery {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  max-height: 92vh;
+  width: 100%;
+  overflow: hidden;
+  background: #e9ecef;
+}
+
+.slides img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity .8s ease;
+}
+
+.slides img.active { opacity: 1; }
+
+.nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border: 0;
+  border-radius: 50%;
+  background: rgb(255 255 255 / .75);
+  color: var(--ink);
+  cursor: pointer;
+  opacity: .85;
+  transition: opacity .2s, background .2s;
+}
+
+.nav:hover, .nav:focus-visible { opacity: 1; background: var(--paper); }
+.prev { left: var(--gutter); }
+.next { right: var(--gutter); }
+
+.counter {
+  position: absolute;
+  right: var(--gutter);
+  bottom: 18px;
+  padding: 4px 10px;
+  background: rgb(255 255 255 / .8);
+  font-size: 14px;
+  letter-spacing: .05em;
+}
+
+/* Patička */
+.bottom {
+  display: grid;
+  grid-template-columns: 1fr repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  align-items: start;
+  padding: 36px var(--gutter) 44px;
+}
+
+.bottom .logo { margin-top: 2px; }
+
+.contact h2 {
+  margin: 0 0 6px;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.contact p {
+  margin: 0;
+  font-size: 14px;
+}
+
+.contact a { text-decoration: none; }
+.contact a:hover { text-decoration: underline; }
+
+@media (max-width: 760px) {
+  .top { padding-top: 24px; }
+  .hero { height: 70vh; min-height: 360px; }
+  .hero img { object-position: 22% top; }
+  .about { grid-template-columns: 1fr; gap: 24px; padding: 60px 16px 80px; }
+  .about .text p { font-size: 17px; line-height: 1.65; }
+  .gallery { aspect-ratio: 4 / 3; }
+  .nav { width: 42px; height: 42px; }
+  .prev { left: 12px; }
+  .next { right: 12px; }
+  .bottom { grid-template-columns: 1fr 1fr; padding: 32px 16px 40px; }
+  .bottom .logo { grid-column: 1 / -1; }
+  :root { --gutter: 16px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .slides img { transition: none; }
+}
