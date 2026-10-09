@@ -94,14 +94,23 @@ a { color: inherit; }
 .down svg { transition: transform .25s ease; }
 .down:hover svg { transform: translateY(3px); }
 
-/* O studiu */
+/* O studiu – samostatná obrazovka na celou výšku, dole šipka na galerii */
 .about {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 100vh;
+  min-height: 100svh;
+  padding: 120px var(--gutter) 130px;
+}
+
+.about-inner {
   display: grid;
   grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
   gap: 40px;
+  width: 100%;
   max-width: 1400px;
   margin: 0 auto;
-  padding: 90px var(--gutter) 140px;
 }
 
 .about h1 {
@@ -125,8 +134,9 @@ a { color: inherit; }
 /* Galerie */
 .gallery {
   position: relative;
-  aspect-ratio: 16 / 9;
-  max-height: 92vh;
+  height: 100vh;
+  height: 100svh;
+  min-height: 360px;
   width: 100%;
   overflow: hidden;
   background: #e9ecef;
@@ -204,9 +214,9 @@ a { color: inherit; }
   .top { padding: 28px 24px 0; }
   .hero { min-height: 360px; }
   .hero img { object-position: 22% top; }
-  .about { grid-template-columns: 1fr; gap: 24px; padding: 60px 16px 80px; }
+  .about { padding: 90px 16px 110px; }
+  .about-inner { grid-template-columns: 1fr; gap: 24px; }
   .about .text p { font-size: 17px; line-height: 1.65; }
-  .gallery { aspect-ratio: 4 / 3; }
   .nav { width: 42px; height: 42px; }
   .prev { left: 12px; }
   .next { right: 12px; }
