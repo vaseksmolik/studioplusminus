@@ -23,16 +23,20 @@ img { display: block; max-width: 100%; height: auto; }
 
 a { color: inherit; }
 
-/* Záhlaví leží přes úvodní obrázek */
+/* Záhlaví leží přes obsah; po odscrollování se schová a při scrollu nahoru vrátí */
 .top {
-  position: absolute;
+  position: fixed;
   inset: 0 0 auto 0;
-  z-index: 2;
+  z-index: 10;
+  transition: transform .2s ease-in;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 46px var(--gutter) 0;
 }
+
+.top.is-hidden { transform: translateY(-100%); }
+.top:focus-within { transform: none; }
 
 .logo { display: inline-flex; color: var(--ink); }
 .logo:focus-visible, .social-icon:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
@@ -43,7 +47,8 @@ a { color: inherit; }
 /* Úvodní obrázek */
 .hero {
   position: relative;
-  height: min(75vw, 92vh);
+  height: 100vh;
+  height: 100svh;
   min-height: 420px;
   overflow: hidden;
 }
@@ -94,6 +99,9 @@ a { color: inherit; }
   font-size: 18px;
   line-height: 1.75;
   max-width: 62ch;
+  text-align: justify;
+  hyphens: auto;
+  -webkit-hyphens: auto;
 }
 
 /* Galerie */
@@ -176,7 +184,7 @@ a { color: inherit; }
 
 @media (max-width: 760px) {
   .top { padding-top: 24px; }
-  .hero { height: 70vh; min-height: 360px; }
+  .hero { min-height: 360px; }
   .hero img { object-position: 22% top; }
   .about { grid-template-columns: 1fr; gap: 24px; padding: 60px 16px 80px; }
   .about .text p { font-size: 17px; line-height: 1.65; }
@@ -191,5 +199,5 @@ a { color: inherit; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .slides img { transition: none; }
+  .slides img, .top { transition: none; }
 }

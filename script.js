@@ -1,3 +1,25 @@
+// Hlavička: nahoře drží, po odscrollování dolů se schová, při scrollu nahoru se vrátí.
+(() => {
+  const header = document.querySelector('.top');
+  if (!header) return;
+
+  const HIDE_AFTER = 400;
+  const THRESHOLD = 6;
+  let lastY = window.scrollY;
+
+  const update = () => {
+    const y = window.scrollY;
+    if (y <= HIDE_AFTER) {
+      header.classList.remove('is-hidden');
+    } else if (Math.abs(y - lastY) > THRESHOLD) {
+      header.classList.toggle('is-hidden', y > lastY);
+    }
+    if (Math.abs(y - lastY) > THRESHOLD || y <= HIDE_AFTER) lastY = y;
+  };
+
+  window.addEventListener('scroll', update, { passive: true });
+})();
+
 // Galerie: šipky, klávesy, swipe a automatické přepínání (vypne se po první interakci).
 (() => {
   const gallery = document.querySelector('.gallery');
