@@ -30,3 +30,12 @@ DNS u Forpsi:
 | A     | @     | 185.199.110.153       |
 | A     | @     | 185.199.111.153       |
 | CNAME | www   | vaseksmolik.github.io |
+
+## Písmo
+
+Návrh (Adobe XD) počítá s písmem **Cy** od Supertype – komerční, dostupné na Adobe Fonts (jen s předplatným Creative Cloud) nebo ke koupi u Supertype.
+Do vyřešení licence web používá zdarma **Manrope** (SIL OFL), uložené ve `fonts/`. Po pořízení Cy stačí přidat `@font-face` pro „Cy“ – v `--sans` je už na prvním místě.
+
+## Náhled pro sdílení
+
+`img/og-image.jpg` (1200×630) se ukazuje ve zprávách a na sociálních sítích. Po změně ho přegenerovat a obnovit cache v https://developers.facebook.com/tools/debug/ a https://www.linkedin.com/post-inspector/.
